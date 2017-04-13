@@ -1,8 +1,8 @@
-package hello
+package main
 
 import (
-    "fmt"
-    "net/http"
+//    "fmt"
+//    "net/http"
     "gopkg.in/zabawaba99/firego.v1"
     "golang.org/x/oauth2"
     "io/ioutil"
@@ -10,8 +10,7 @@ import (
     "log"
 )
 
-func init() {
-    log.Println("hoge")
+func main() {
     d, err := ioutil.ReadFile("id.json")
     if err != nil {
         return
@@ -25,17 +24,14 @@ func init() {
 
     notifications := make(chan firego.Event)
     if err := fb.Watch(notifications); err != nil {
-        log.Fatal(err)
+    	log.Fatal(err)
     }
 
     defer fb.StopWatching()
     for event := range notifications {
-        log.Printf("Event %#v\n", event)
+    	log.Printf("Event %#v\n", event)
     }
 
     log.Println("Notifications have stopped")
 }
 
-func handler(w http.ResponseWriter, r *http.Request) {
-    fmt.Fprint(w, "Hello, world!")
-}

@@ -1,2 +1,4 @@
 *~
 *.pyc
+id.json
+.DS_Store
